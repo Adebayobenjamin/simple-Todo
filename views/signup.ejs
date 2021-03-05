@@ -1,0 +1,59 @@
+<%- include('partials/header')  %> 
+    <form>
+        <h2>Sign Up</h2>
+        <input type="text" name="email" placeholder="email">
+        <div class="error email"></div>
+        <input type="password" name="password" id="password" placeholder="password">
+        <p id="passwordToggle">show password</p>
+        <div class="error password"></div>
+        <button type="submit">Sign up  <div class="loader"></div></button>
+       
+    </form>
+
+    <script>
+        const passwordToggle = document.getElementById('passwordToggle');
+        passwordToggle.addEventListener('click',(e)=>{
+            const password = document.getElementById('password');
+            if(password.type === 'password'){
+                password.type = 'text';
+                passwordToggle.textContent = 'hide password'
+            }
+            else{
+                password.type = 'password';
+                passwordToggle.textContent = 'show paassword'
+            }
+        } )
+        const loader = document.querySelector('.loader')
+        const form = document.querySelector('form');
+        const emailError = document.querySelector('.error.email');
+        const passwordError = document.querySelector('.error.password')
+        form.addEventListener('submit', (e)=>{
+            e.preventDefault();
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            const email = form.email.value;
+            const password = form.password.value;
+            loader.style.display = "block";
+            
+            fetch('/signup', {
+                method: "POST",
+                body: JSON.stringify({email, password}),
+                headers: {"Content-Type": "application/json"}
+            }).then(response=>{
+                response.json().then(data=>{
+                    loader.style.display = "none";
+                    if(data.user){
+                        location.assign('/create-todo')
+                    }
+                    if(data.errors){
+                        emailError.textContent = data.errors.email;
+                        passwordError.textContent = data.errors.password;
+                    }
+                    console.log(data);
+                })
+            }).catch(err=> console.log(err));
+        })
+       
+    </script>
+</body>
+</html>

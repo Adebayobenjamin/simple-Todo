@@ -1,0 +1,44 @@
+<%- include('partials/header')  %> 
+    <form id="createForm">
+        <h2>Update Todo </h2>
+        <input type="text" name="task" placeholder="Task" value="<%= todo.task %> " data-doc="<%= todo.id %> ">
+        <div class="error task"></div>
+        <textarea name="details" cols="30" rows="10" placeholder="details"><%= todo.details %> </textarea>
+        <div class="error details"></div>
+        <button>Update Task <div class="loader"></div></button>
+    </form>
+</body>
+<script>
+    const form = document.querySelector('form');
+    const taskError = document.querySelector('.error.task');
+    const detailsError = document.querySelector('.error.details');
+    const loader = document.querySelector('.loader')
+    form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        loader.style.display = 'block';
+        
+        const task = form.task.value;
+        const details = form.details.value;
+        console.log(task, details);
+        const id = form.task.dataset.doc;
+        const url = '/update'+ id;
+         fetch(url, {
+             method: "PUT",
+             body: JSON.stringify({task, details}),
+             headers: {"Content-Type" : "application/json"}
+         }).then(response=>{
+             response.json().then(data=>{
+                 loader.style.display = 'none';
+                 if(data.redirect){
+                    location.assign(data.redirect);
+                 };
+                 if(data.errors){
+                     taskError.textContent = data.errors.task;
+                     detailsError.textContent = data.errors.details;
+                 }
+             })
+         }).catch(err=> console.log(err))
+    })
+
+</script>
+</html>

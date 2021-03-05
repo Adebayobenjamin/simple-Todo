@@ -1,0 +1,24 @@
+<%- include('partials/header')  %> 
+    <h2><%= todo.task %> </h2>
+    <div><%= todo.details %> </div>
+    <a href="/update<%= todo.id %> " class="btn"> Update</a>
+    <button style="background-color: red; color: white;" id="delete" data-doc="<%= todo.id %> ">Delete</button>
+</body>
+<script>
+   const deleteBtn = document.getElementById('delete');
+   const id = deleteBtn.dataset.doc;
+   const url = '/todo' + id;
+   deleteBtn.addEventListener('click', ()=>{
+    fetch(url, {
+            method: "DELETE"
+          }).then(response=>{
+            response.json().then(data=>{
+              console.log(data)
+              location.assign(data.redirect)
+            })
+          }).catch(err=> console.log(err))
+        });
+
+
+</script>
+</html>
