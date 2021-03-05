@@ -1,0 +1,36 @@
+<%- include('partials/header')  %> 
+  
+  <div class="todos">
+    <% if(todos.length > 0){ %> 
+      <h1>Your Todos</h1>
+      <% todos.forEach(todo=>{ %>
+        <li><a href="/todo<%= todo.id %> "><%=todo.task %></a> <span class="delete" data-id="<%= todo.id %> ">delete</span>
+        </li>
+
+      <%}) %> 
+    <% } else{ %> 
+      <h2>Yay!!... you have no todos left</h2>
+      <a href="/create-todo" class="btn">Create a new one</a>
+    <% } %> 
+ 
+    <script>
+      const deleteBtn = document.getElementsByClassName('delete');
+
+      for (let i = 0; i < deleteBtn.length; i++) {
+        const trash = deleteBtn[i];
+        const id = trash.dataset.id
+        const url = "/todo" + id
+        trash.addEventListener('click', (e)=>{
+          fetch(url, {
+            method: "DELETE"
+          }).then(response=>{
+            response.json().then(data=>{
+              console.log(data)
+              location.assign(data.redirect)
+            })
+          }).catch(err=> console.log(err))
+        })
+      };
+    </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+body{
+  margin: 20px 40px;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  background: #fafafa;
+}
+.loader{
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top-color: black;
+    border-radius: 50%;
+    margin-left: 115px;
+    margin-top: -20px;
+    animation: spin 1s linear infinite ;
+    display: none;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+h1, h2, h3, h4, ul, li, a, p, input, label, button, div, footer{
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
+  color: #444;
+}
+ul{
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
+}
+li{
+    list-style-type: none;
+}
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 120px;
+}
+nav ul{
+  display: flex;
+  align-items: center;
+}
+nav li{
+  margin-left: 20px;
+}
+nav li a{
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.8em;
+  display: block;
+  padding: 10px 16px;
+  letter-spacing: 2px;
+}
+.btn{
+  border-radius: 36px;
+  background: #FEE996;
+}
+form h2{
+  font-size: 2.4em;
+  font-weight: 900;
+  margin-bottom: 40px;
+}
+form{
+  width: 360px;
+  margin: 0 auto;
+  padding: 30px;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  background: white;
+}
+#passwordToggle{
+    font-size: small;
+    cursor: pointer;
+}
+input, textarea{
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+label{
+  display: block;
+  margin: 20px 0 10px;
+}
+button, .btn{
+  margin-top: 30px;
+  border-radius: 36px;
+  background: #FEE996;
+  border:0;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.8em;
+  display: block;
+  padding: 10px 16px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+.error{
+  color: #ff0099;
+  margin: 10px 2px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+.todos{
+    width: 80%;
+    margin: 0 10% auto;
+    padding: 20px;
+}
+.todos li {
+    background-color: white;
+    border-left: 5px solid #ff0099;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
+}
+.todos li:hover{
+    padding: 30px;
+}
+
+.todos li span{
+    color:#ff0099;
+    float: right;
+    cursor: pointer;
+}
+.todos li span:hover{
+    color:red;
+}
+footer{
+  text-align: center;
+  margin-top: 120px;
+  color: #aaa;
+}
+a[class="btn"]{
+    width: 100px;
+}
