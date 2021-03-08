@@ -37,7 +37,7 @@ app.get('/home', (req, res)=>{
     res.render('index')
 });
 app.use(AuthRoutes);
-app.use(TodoRoutes);
+app.use(requireAuth, TodoRoutes);
 app.use((req, res)=>{
     res.render('404');
 })

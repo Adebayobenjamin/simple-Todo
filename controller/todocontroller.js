@@ -1,8 +1,6 @@
 const Todo = require('../models/todo');
 const jwt = require('jsonwebtoken')
-module.exports.createTodo_get = (req, res)=>{
-    res.render('create-todo');
-}
+
 // handle errors
 const handleErrors = (err)=>{
     const errors = {task: '', details: ''};
@@ -13,6 +11,9 @@ const handleErrors = (err)=>{
         })
     }
     return errors
+}
+module.exports.createTodo_get = (req, res)=>{
+    res.render('create-todo');
 }
 module.exports.createTodo_post=(req, res)=>{
     const token = req.cookies.todo;
