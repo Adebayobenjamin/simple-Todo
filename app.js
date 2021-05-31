@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const {requireAuth, CheckUser} = require('./middleware/authmiddleware');
 const TodoRoutes = require('./router/todoRoutes');
 
-const dbUri = "mongodb+srv://drell23:test1234@cluster0.slgfd.mongodb.net/Node-tuts?retryWrites=true&w=majority";
+const dbUri = "mongodb+srv://MongoUserName:MongoPassword@cluster0.slgfd.mongodb.net/Node-tuts?retryWrites=true&w=majority";
 
 mongoose.connect(dbUri, {
     useCreateIndex: true,
